@@ -2,3 +2,5 @@ templates/
 node_modules/
 dist/
 public/
+*.optimized.mp4
+*.tmp.mp4
