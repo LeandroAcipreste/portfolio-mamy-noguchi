@@ -667,4 +667,13 @@ body {
         margin-left: auto;
         margin-right: auto;
     }
+
+    .footer-content-layer {
+        padding-top: 3rem;
+        padding-bottom: 13.5rem;
+    }
+
+    #main-footer .footer-tagline {
+        margin-bottom: 1.75rem;
+    }
 }

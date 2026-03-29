@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const isCoarsePointer = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
     const cpuCores = navigator.hardwareConcurrency || 4;
     const deviceMem = navigator.deviceMemory || 4;
-    const isLowPerfDevice = isCoarsePointer || cpuCores <= 4 || deviceMem <= 4;
+    const isLowPerfDevice = isCoarsePointer || cpuCores <= 2 || deviceMem <= 2;
     const allowHeavyEffects = !prefersReducedMotion && !isLowPerfDevice;
 
     let lenis;
@@ -46,12 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Mamy: Lenis error:', e);
     }
 
-    const initParticles = () => {
+    const initParticles = (attempt = 0) => {
         try {
             if (typeof particlesJS !== 'undefined') {
                 const isDev = import.meta.env.DEV;
                 const narrow = window.matchMedia('(max-width: 767px)').matches;
-                const count = allowHeavyEffects ? (isDev ? (narrow ? 22 : 36) : narrow ? 42 : 68) : narrow ? 14 : 24;
+                const count = allowHeavyEffects ? (isDev ? (narrow ? 28 : 52) : narrow ? 52 : 96) : narrow ? 16 : 28;
                 particlesJS('particles-js', {
                     particles: {
                         number: {
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         },
                         color: { value: '#e5c9a8' },
                         shape: {
-                            type: ['circle', 'triangle'],
+                            type: ['circle', 'triangle', 'polygon'],
                             stroke: { width: 0, color: '#000000' },
                             polygon: { nb_sides: 5 },
                         },
@@ -100,6 +100,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     },
                     retina_detect: allowHeavyEffects && !isDev,
                 });
+                return;
+            }
+            if (attempt < 10) {
+                setTimeout(() => initParticles(attempt + 1), 250);
             }
         } catch (e) {
             console.error('Mamy: Particles error:', e);
