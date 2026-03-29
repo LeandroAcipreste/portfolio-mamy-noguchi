@@ -1,0 +1,670 @@
+/* Geist carregado no index.html (evita @import duplicado e bloqueio de render) */
+
+:root {
+    --atmos-green: #2e4129;
+    --atmos-gold: #b39344;
+    --cream-tan: #e5c9a8;
+}
+
+/* Lenis: evita conflito com scroll-behavior nativo */
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+body {
+    font-family: 'Geist', sans-serif;
+    background-color: var(--atmos-green);
+    margin: 0;
+    padding: 0;
+}
+
+/* Acessibilidade: link "pular para conteúdo" */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0.75rem;
+    z-index: 10001;
+    padding: 0.5rem 1rem;
+    background: var(--atmos-gold);
+    color: var(--atmos-green);
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 0.5rem;
+}
+
+.skip-link:focus {
+    left: 0.75rem;
+    outline: 2px solid var(--cream-tan);
+    outline-offset: 2px;
+}
+
+/* Custom Cursor Logic */
+@media (min-width: 1024px) {
+    .custom-cursor-active,
+    .custom-cursor-active a,
+    .custom-cursor-active button,
+    .custom-cursor-active .wood-btn,
+    .custom-cursor-active .mamy-back-top-btn,
+    .custom-cursor-active .footer-social-btn {
+        cursor: none !important;
+    }
+}
+
+#mamy-custom-cursor {
+    transform: translate(-50%, -50%);
+    will-change: transform;
+    pointer-events: none;
+    mix-blend-mode: normal; /* Logo color integrity */
+}
+
+/* Wood Button Core Style */
+.wood-btn {
+    display: flex;
+    width: 100%;
+    height: 54px;
+    background-image: url('/img/botao22.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #4a3621; /* Dark wood-tone text */
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border-radius: 8px; /* Matching the reference curve */
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+        filter 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+    border: 1px solid rgba(229, 201, 168, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.wood-btn:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 24px rgba(179, 147, 68, 0.3);
+    filter: brightness(1.1);
+}
+
+.wood-btn:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+/* Botão flutuante: madeira + círculo + seta para o topo */
+.mamy-back-top-btn {
+    position: fixed;
+    bottom: 1.75rem;
+    right: 1.75rem;
+    z-index: 100;
+    width: 3.5rem;
+    height: 3.5rem;
+    min-width: 3.5rem;
+    padding: 0;
+    margin: 0;
+    border: 1px solid rgba(229, 201, 168, 0.25);
+    border-radius: 9999px;
+    background-color: transparent;
+    background-image: url('/img/botao22.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4a3621;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.45s ease, transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 0.35s ease, filter 0.35s ease;
+}
+
+.mamy-back-top-btn.mamy-back-top-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.mamy-back-top-btn:hover {
+    transform: scale(1.08);
+    filter: brightness(1.08);
+    box-shadow: 0 10px 32px rgba(179, 147, 68, 0.35);
+}
+
+.mamy-back-top-btn:active {
+    transform: scale(1.02);
+}
+
+.mamy-back-top-btn:focus-visible {
+    outline: 2px solid var(--cream-tan);
+    outline-offset: 3px;
+}
+
+.mamy-back-top-icon {
+    width: 1.35rem;
+    height: 1.35rem;
+    display: block;
+}
+
+@media (max-width: 767px) {
+    .mamy-back-top-btn {
+        bottom: 1.25rem;
+        right: 1.25rem;
+        width: 3.25rem;
+        height: 3.25rem;
+        min-width: 3.25rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mamy-back-top-btn {
+        transition: opacity 0.2s ease;
+    }
+}
+
+/* Glassmorphism Refined */
+.glass-mamy {
+    background: rgba(26, 37, 23, 0.6);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+}
+
+/* Premium Card Texture - Beige & Cream */
+.bg-card-texture {
+    background-image: url('/img/card-texture.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.bg-card-texture::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 0%, rgba(229, 201, 168, 0.05) 100%);
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+@media (max-width: 767px) {
+    .bg-card-texture::after {
+        display: none;
+    }
+}
+
+/* Cinematic Effects */
+.vignette-v4 {
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+.gold-radial-glow {
+    background: radial-gradient(circle at center, rgba(229, 201, 168, 0.4) 0%, transparent 65%);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--atmos-green);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--atmos-gold);
+    border-radius: 10px;
+}
+
+/* --- Preloader & Signature --- */
+#preloader {
+    background-color: var(--atmos-green);
+    will-change: transform;
+}
+
+.signature-container {
+    width: 90%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sig-path {
+    stroke: var(--atmos-gold);
+    stroke-width: 1.5;
+    fill: transparent;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.signature-line {
+    width: 0;
+    height: 1px;
+    background: rgba(179, 147, 68, 0.3); /* Gold with low opacity */
+    margin-top: 10px;
+}
+
+/* --- Welcome Intro --- */
+.welcome-container {
+    position: relative;
+    z-index: 20;
+    margin-bottom: -15px; /* Overlap with bird slightly */
+}
+
+.welcome-path {
+    stroke: var(--atmos-gold);
+    stroke-width: 1.5;
+    fill: transparent;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 10px rgba(179, 147, 68, 0.3));
+}
+
+/* Hero Elements Initial State (for GSAP) */
+.hero-bird-image,
+.hero-card-container,
+.wood-btn,
+.hero-camada-top,
+.hero-camada-bottom,
+.welcome-path,
+.wood-marquee {
+    opacity: 0;
+}
+
+/* --- Marquee (Logo & Branding) --- */
+.wood-marquee {
+    background-image: url('/img/botao22.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-top: 1px solid rgba(229, 201, 168, 0.2);
+    border-bottom: 1px solid rgba(229, 201, 168, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.mq {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+}
+
+.mq-c {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    min-width: 100%;
+    /* 36s is default from template, adjust if needed */
+    animation: mqr 36s linear infinite;
+}
+
+/* Optional: left to right motion if preferred */
+.mq-c.left-to-right {
+    animation-direction: reverse;
+}
+
+@keyframes mqr {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/* --- Vertical Scrolling Column Animations --- */
+.logoEbranding-wall-track {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    will-change: transform;
+}
+
+.logoEbranding-wall-stage {
+    perspective: 1800px;
+    perspective-origin: center 35%;
+}
+
+.mask-fade-v2 {
+    mask-image: linear-gradient(180deg, transparent, black 12%, black 88%, transparent);
+    -webkit-mask-image: linear-gradient(180deg, transparent, black 12%, black 88%, transparent);
+}
+
+.logoEbranding-wall-3d {
+    transform-style: preserve-3d;
+    transform: rotateX(8deg) rotateY(-4deg) scale(0.98);
+    transform-origin: center top;
+}
+
+.logoEbranding-wall-column {
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.logoEbranding-wall-column:nth-child(1) {
+    transform: translateY(30px) rotateZ(-3deg) rotateY(6deg);
+}
+.logoEbranding-wall-column:nth-child(2) {
+    transform: translateY(-10px) rotateZ(-1deg) rotateY(3deg);
+}
+.logoEbranding-wall-column:nth-child(3) {
+    transform: translateY(10px) rotateZ(1deg) rotateY(-3deg);
+}
+.logoEbranding-wall-column:nth-child(4) {
+    transform: translateY(35px) rotateZ(3deg) rotateY(-6deg);
+}
+
+@media (max-width: 1023px) {
+    .logoEbranding-wall-3d {
+        transform: none;
+    }
+    .logoEbranding-wall-column:nth-child(1),
+    .logoEbranding-wall-column:nth-child(2),
+    .logoEbranding-wall-column:nth-child(3),
+    .logoEbranding-wall-column:nth-child(4) {
+        transform: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .logoEbranding-wall-3d {
+        height: 600px;
+    }
+    /* Mobile optimization for Logo Section */
+    .logoEbranding-wall-track {
+        gap: 8px; /* Tightened from 12px */
+    }
+    .mask-fade-v2 {
+        mask-image: linear-gradient(180deg, transparent, black 2%, black 98%, transparent);
+        -webkit-mask-image: linear-gradient(180deg, transparent, black 2%, black 98%, transparent);
+    }
+    .vignette-v4,
+    .gold-radial-glow {
+        display: none !important;
+    }
+}
+
+/* --- Books Section (Fourth Fold) --- */
+#books-section {
+    position: relative;
+    background-color: var(--atmos-green);
+    border-top: 1px solid rgba(229, 201, 168, 0.1);
+}
+
+#books-bg-video {
+    pointer-events: none;
+    user-select: none;
+}
+
+.book-card {
+    will-change: transform, opacity;
+    opacity: 0; /* Initial state for GSAP */
+    transition: box-shadow 0.6s ease, border-color 0.6s ease;
+}
+
+.book-card:hover {
+    box-shadow: 0 15px 45px rgba(179, 147, 68, 0.2);
+    border-color: rgba(179, 147, 68, 0.5);
+}
+
+@media (max-width: 767px) {
+    #books-section {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    .book-card {
+        aspect-ratio: 4/5;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+}
+
+/* --- Magazine & Menu Section: Card Hover (all 3 cards) --- */
+.magazine-card {
+    position: relative;
+    transition: transform 0.7s ease-out, box-shadow 0.7s ease-out, border-color 0.7s ease-out;
+    z-index: 0;
+}
+
+.magazine-card:hover {
+    transform: translateY(-16px) scale(1.07) !important;
+    z-index: 10;
+    box-shadow: 0 30px 60px rgba(179, 147, 68, 0.2);
+}
+
+/* Center card stays slightly bigger at rest */
+.magazine-card:nth-child(2) {
+    transform: scale(1.05);
+    z-index: 5;
+}
+
+.magazine-card:nth-child(2):hover {
+    transform: translateY(-24px) scale(1.14) !important;
+    z-index: 15;
+}
+
+/* Image inside card zooms smoothly on hover */
+.magazine-card img {
+    transition: transform 0.7s ease-out;
+}
+
+.magazine-card:hover img {
+    transform: scale(1.12) !important;
+}
+
+/* --- Label & Packing: Mobile Touch Toggle Accordion --- */
+@media (hover: none) and (pointer: coarse) {
+    .packing-accordion-card.touch-active {
+        flex: 4 !important;
+        opacity: 1 !important;
+        filter: blur(0px) !important;
+        border-color: rgba(46, 65, 41, 0.3) !important;
+        transform: translateY(-4px) !important;
+    }
+
+    .accordion-has-active .packing-accordion-card:not(.touch-active) {
+        opacity: 0.5 !important;
+        filter: blur(2px) !important;
+    }
+
+    .packing-accordion-card.touch-active img {
+        transform: scale(1.1) !important;
+    }
+}
+
+/* --- Footer (efeito brilho — site-mamy-novo) --- */
+.footer-shine-sweep {
+    background: linear-gradient(
+        110deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0) 40%,
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(255, 255, 255, 0) 60%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 200% 100%;
+    animation: shine-sweep 8s infinite linear;
+    contain: strict;
+}
+
+@keyframes shine-sweep {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .footer-shine-sweep {
+        animation: none !important;
+    }
+
+    .footer-tagline {
+        animation: none !important;
+    }
+}
+
+/* --- Footer: assinatura (Montserrat + gradiente) --- */
+.footer-name-sign-outer {
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    max-width: 100%;
+}
+
+.footer-name-sign-clip {
+    overflow: hidden;
+    display: block;
+    width: 0;
+    margin-left: auto;
+    margin-right: auto;
+    will-change: width;
+}
+
+.footer-name-sign-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    font-size: clamp(1.2rem, 4.5vw, 2.65rem);
+    white-space: nowrap;
+    display: inline-block;
+    line-height: 1.15;
+    background: linear-gradient(to right, #d6c5a6, #b89d64);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 3px 18px rgba(0, 0, 0, 0.55));
+}
+
+.footer-name-sign-line {
+    height: 2px;
+    width: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0.55rem;
+    border-radius: 2px;
+    background: linear-gradient(to right, #d6c5a6, #b89d64);
+    box-shadow: 0 0 16px rgba(214, 197, 166, 0.35);
+    transform-origin: left center;
+    will-change: width, transform;
+}
+
+#main-footer .footer-tagline {
+    font-family: 'Geist', sans-serif;
+    font-style: italic;
+    letter-spacing: 0.04em;
+    background: linear-gradient(
+        92deg,
+        rgba(229, 201, 168, 0.75) 0%,
+        #f5ead8 35%,
+        #b39344 55%,
+        rgba(229, 201, 168, 0.9) 100%
+    );
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: footer-tagline-shimmer 9s ease-in-out infinite;
+}
+
+@keyframes footer-tagline-shimmer {
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.footer-social-btn {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.85rem;
+    padding: 0.9rem 1.4rem;
+    min-height: 3.25rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    color: #f0e8dc;
+    font-family: 'Geist', sans-serif;
+    background: rgba(15, 22, 12, 0.55);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(179, 147, 68, 0.28);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease,
+        border-color 0.35s ease, filter 0.35s ease;
+}
+
+.footer-social-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    border-color: rgba(229, 201, 168, 0.45);
+    box-shadow: 0 14px 40px rgba(179, 147, 68, 0.22);
+    filter: brightness(1.06);
+}
+
+.footer-social-btn:active {
+    transform: translateY(0) scale(0.99);
+}
+
+.footer-social-btn:focus-visible {
+    outline: 2px solid var(--cream-tan);
+    outline-offset: 3px;
+}
+
+.footer-social-icon {
+    width: 1.65rem;
+    height: 1.65rem;
+    flex-shrink: 0;
+}
+
+.footer-social-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 0.1rem;
+}
+
+.footer-social-label {
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.footer-social-sub {
+    font-size: 0.75rem;
+    font-weight: 500;
+    opacity: 0.82;
+    letter-spacing: 0.04em;
+}
+
+.footer-social-btn--whatsapp:hover {
+    border-color: rgba(37, 211, 102, 0.45);
+}
+
+.footer-social-btn--instagram:hover {
+    border-color: rgba(225, 48, 108, 0.45);
+}
+
+@media (max-width: 639px) {
+    .footer-social-btn {
+        width: 100%;
+        max-width: 20rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

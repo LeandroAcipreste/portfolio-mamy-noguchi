@@ -1,0 +1,26 @@
+{
+    "name": "portfolio-mamy-noguchi",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "predev": "node scripts/sync-public-assets.mjs",
+        "dev": "vite",
+        "prebuild": "node scripts/sync-public-assets.mjs",
+        "build": "vite build",
+        "preview": "vite preview",
+        "optimize-images": "node scripts/optimize-images.mjs",
+        "optimize-media": "node scripts/optimize-media.mjs",
+        "build:vercel": "npm run optimize-media && npm run build"
+    },
+    "dependencies": {
+        "gsap": "^3.12.7",
+        "lenis": "^1.1.20"
+    },
+    "devDependencies": {
+        "autoprefixer": "^10.4.20",
+        "postcss": "^8.4.49",
+        "sharp": "^0.33.5",
+        "tailwindcss": "^3.4.17",
+        "vite": "^6.0.7"
+    }
+}

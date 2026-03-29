@@ -1,0 +1,5 @@
+@import './style-mamy.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
