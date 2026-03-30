@@ -288,5 +288,3 @@ export async function initHeroBackground() {
     requestAnimationFrame(animate);
 }
 
-document.addEventListener('DOMContentLoaded', initHeroBackground);
-
