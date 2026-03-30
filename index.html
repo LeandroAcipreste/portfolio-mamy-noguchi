@@ -846,8 +846,8 @@
             </div>
         </div>
 
-        <!-- 6th Fold: Label & Packing -->
-        <section id="label-packing-section" class="relative w-full min-h-screen py-24 flex items-center justify-center overflow-hidden bg-[#263124]">
+        <!-- 6th Fold: Label & Packing (block: evita flex-row espremendo o conteúdo no mobile) -->
+        <section id="label-packing-section" class="relative w-full min-h-screen py-16 md:py-24 overflow-hidden bg-[#263124]">
             <!-- Ink Background Image -->
             <div class="absolute inset-0 z-0 overflow-hidden">
                 <img id="packing-bg-img" src="/img/portfolio/label&paking/bg-ink.avif" alt="Ink Background" class="absolute inset-0 w-full h-[120%] -top-[10%] object-cover filter brightness-[0.7] contrast-[1.2] will-change-transform">
@@ -869,32 +869,32 @@
             </style>
 
             <!-- Floating Gallery Container: Holographic Accordion -->
-            <div class="relative z-20 w-full max-w-7xl px-6 md:px-12 pointer-events-none">
-                <div class="flex flex-col md:flex-row w-full h-auto md:h-[650px] gap-3 md:gap-5 group/accordion perspective-1200 pt-10">
+            <div class="relative z-20 w-full max-w-7xl mx-auto px-6 md:px-12 pointer-events-none">
+                <div class="flex flex-col md:flex-row w-full h-auto md:h-[650px] gap-3 md:gap-5 group/accordion perspective-1200 pt-8 md:pt-10">
                     
-                    <!-- Card 1 -->
-                    <div class="packing-accordion-card group/card relative flex-1 rounded-[2rem] overflow-hidden bg-[#263124]/40 border border-[#2e4129]/10 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:flex-[4] cursor-pointer shadow-2xl group-hover/accordion:opacity-50 hover:!opacity-100 group-hover/accordion:blur-sm hover:!blur-none hover:border-[#2e4129]/30 isolate transform hover:-translate-y-1 pointer-events-auto">
+                    <!-- Card 1 — min-height no mobile: imagens são absolute e sem isso o card colapsa -->
+                    <div class="packing-accordion-card group/card relative w-full min-h-[280px] flex-none md:flex-1 md:min-h-0 rounded-[2rem] overflow-hidden bg-[#263124]/40 border border-[#2e4129]/10 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] md:hover:flex-[4] cursor-pointer shadow-2xl group-hover/accordion:opacity-50 hover:!opacity-100 group-hover/accordion:blur-sm hover:!blur-none hover:border-[#2e4129]/30 isolate transform hover:-translate-y-1 pointer-events-auto">
                         <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#2e4129] to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-[800ms] z-20"></div>
                         <img src="/img/portfolio/label&paking/011.png" alt="Lila Packaging" class="absolute inset-0 w-full h-full object-cover opacity-100 transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/card:scale-110">
                         <div class="absolute top-1/2 left-1/2 w-[150%] aspect-square bg-[conic-gradient(from_0deg,transparent_0_280deg,rgba(46,65,41,0.25)_360deg)] opacity-0 group-hover/card:opacity-100 animate-radar pointer-events-none blur-2xl z-0 transition-opacity duration-700"></div>
                     </div>
 
                     <!-- Card 2 -->
-                    <div class="packing-accordion-card group/card relative flex-1 rounded-[2rem] overflow-hidden bg-[#263124]/40 border border-[#2e4129]/10 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:flex-[4] cursor-pointer shadow-2xl group-hover/accordion:opacity-50 hover:!opacity-100 group-hover/accordion:blur-sm hover:!blur-none hover:border-[#2e4129]/30 isolate transform hover:-translate-y-1 pointer-events-auto">
+                    <div class="packing-accordion-card group/card relative w-full min-h-[280px] flex-none md:flex-1 md:min-h-0 rounded-[2rem] overflow-hidden bg-[#263124]/40 border border-[#2e4129]/10 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] md:hover:flex-[4] cursor-pointer shadow-2xl group-hover/accordion:opacity-50 hover:!opacity-100 group-hover/accordion:blur-sm hover:!blur-none hover:border-[#2e4129]/30 isolate transform hover:-translate-y-1 pointer-events-auto">
                         <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#2e4129] to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-[800ms] z-20"></div>
                         <img src="/img/portfolio/label&paking/09.png" alt="Label Design" class="absolute inset-0 w-full h-full object-cover opacity-100 transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/card:scale-110">
                         <div class="absolute top-1/2 left-1/2 w-[150%] aspect-square bg-[conic-gradient(from_0deg,transparent_0_280deg,rgba(46,65,41,0.25)_360deg)] opacity-0 group-hover/card:opacity-100 animate-radar pointer-events-none blur-2xl z-0 transition-opacity duration-700"></div>
                     </div>
 
                     <!-- Card 3 -->
-                    <div class="packing-accordion-card group/card relative flex-1 rounded-[2rem] overflow-hidden bg-[#263124]/40 border border-[#2e4129]/10 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:flex-[4] cursor-pointer shadow-2xl group-hover/accordion:opacity-50 hover:!opacity-100 group-hover/accordion:blur-sm hover:!blur-none hover:border-[#2e4129]/30 isolate transform hover:-translate-y-1 pointer-events-auto">
+                    <div class="packing-accordion-card group/card relative w-full min-h-[280px] flex-none md:flex-1 md:min-h-0 rounded-[2rem] overflow-hidden bg-[#263124]/40 border border-[#2e4129]/10 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] md:hover:flex-[4] cursor-pointer shadow-2xl group-hover/accordion:opacity-50 hover:!opacity-100 group-hover/accordion:blur-sm hover:!blur-none hover:border-[#2e4129]/30 isolate transform hover:-translate-y-1 pointer-events-auto">
                         <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#2e4129] to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-[800ms] z-20"></div>
                         <img src="/img/portfolio/label&paking/PROPOSTA_NANNA_LUZ.png" alt="Nanna Luz" class="absolute inset-0 w-full h-full object-cover opacity-100 transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/card:scale-110">
                         <div class="absolute top-1/2 left-1/2 w-[150%] aspect-square bg-[conic-gradient(from_0deg,transparent_0_280deg,rgba(46,65,41,0.25)_360deg)] opacity-0 group-hover/card:opacity-100 animate-radar pointer-events-none blur-2xl z-0 transition-opacity duration-700"></div>
                     </div>
 
                     <!-- Card 4 -->
-                    <div class="packing-accordion-card group/card relative flex-1 rounded-[2rem] overflow-hidden bg-[#263124]/40 border border-[#2e4129]/10 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:flex-[4] cursor-pointer shadow-2xl group-hover/accordion:opacity-50 hover:!opacity-100 group-hover/accordion:blur-sm hover:!blur-none hover:border-[#2e4129]/30 isolate transform hover:-translate-y-1 pointer-events-auto">
+                    <div class="packing-accordion-card group/card relative w-full min-h-[280px] flex-none md:flex-1 md:min-h-0 rounded-[2rem] overflow-hidden bg-[#263124]/40 border border-[#2e4129]/10 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] md:hover:flex-[4] cursor-pointer shadow-2xl group-hover/accordion:opacity-50 hover:!opacity-100 group-hover/accordion:blur-sm hover:!blur-none hover:border-[#2e4129]/30 isolate transform hover:-translate-y-1 pointer-events-auto">
                         <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#2e4129] to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-[800ms] z-20"></div>
                         <img src="/img/portfolio/label&paking/Riani Fotografia (40).png" alt="Botanical Design" class="absolute inset-0 w-full h-full object-cover opacity-100 transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/card:scale-110">
                         <div class="absolute top-1/2 left-1/2 w-[150%] aspect-square bg-[conic-gradient(from_0deg,transparent_0_280deg,rgba(46,65,41,0.25)_360deg)] opacity-0 group-hover/card:opacity-100 animate-radar pointer-events-none blur-2xl z-0 transition-opacity duration-700"></div>

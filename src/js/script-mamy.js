@@ -29,7 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
             orientation: 'vertical',
             gestureOrientation: 'vertical',
             wheelMultiplier: 0.92,
-            smoothTouch: true,
+            // Touch + Lenis costuma travar ou não chegar ao fim da página; scroll nativo no mobile.
+            smoothTouch: false,
             touchMultiplier: 1.05,
             infinite: false,
             autoResize: true,
@@ -874,6 +875,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             }
+
+            requestAnimationFrame(() => ScrollTrigger.refresh());
+            window.addEventListener(
+                'load',
+                () => {
+                    ScrollTrigger.refresh();
+                },
+                { once: true }
+            );
 
             log('All sections initialized');
     } catch (e) {
