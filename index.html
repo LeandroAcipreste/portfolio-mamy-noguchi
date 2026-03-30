@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="overflow-hidden">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
-<body class="bg-[#2e4129] text-[#e5c9a8] antialiased overflow-hidden custom-cursor-active">
+<body class="bg-[#2e4129] text-[#e5c9a8] antialiased overflow-x-hidden custom-cursor-active">
     <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
     <!-- Custom Mouse Cursor -->
     <div id="mamy-custom-cursor" class="fixed pointer-events-none z-[10000] w-6 h-6 opacity-0 transition-opacity duration-300 hidden lg:block">
@@ -86,11 +86,8 @@
     <main id="main-content" class="relative z-10 w-full min-h-screen">
 
         <!-- Hero Section -->
-        <section class="min-h-screen flex items-center justify-center py-15 px-8 max-w-7xl mx-auto relative overflow-hidden">
-            <!-- Hero geometric background (Three.js) -->
-            <div id="hero-canvas-container" class="absolute inset-0 z-0 pointer-events-none opacity-70"></div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center w-full relative z-10">
+        <section class="min-h-screen flex items-center justify-center py-15 px-8 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center w-full">
 
                 <!-- Left Side: Bird Logo + Welcome Intro -->
                 <div class="flex flex-col items-center justify-center hero-logo-container relative">
@@ -873,7 +870,7 @@
 
             <!-- Floating Gallery Container: Holographic Accordion -->
             <div class="relative z-20 w-full max-w-7xl px-6 md:px-12 pointer-events-none">
-                <div class="flex flex-col md:flex-row w-full h-[1000px] md:h-[650px] gap-3 md:gap-5 group/accordion perspective-1200 pt-10">
+                <div class="flex flex-col md:flex-row w-full h-auto md:h-[650px] gap-3 md:gap-5 group/accordion perspective-1200 pt-10">
                     
                     <!-- Card 1 -->
                     <div class="packing-accordion-card group/card relative flex-1 rounded-[2rem] overflow-hidden bg-[#263124]/40 border border-[#2e4129]/10 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:flex-[4] cursor-pointer shadow-2xl group-hover/accordion:opacity-50 hover:!opacity-100 group-hover/accordion:blur-sm hover:!blur-none hover:border-[#2e4129]/30 isolate transform hover:-translate-y-1 pointer-events-auto">

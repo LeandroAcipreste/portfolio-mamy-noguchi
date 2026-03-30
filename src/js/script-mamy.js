@@ -48,77 +48,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const initParticles = (attempt = 0) => {
         try {
-            // Quando o fundo geométrico WebGL (hero) está ativo, evita duplicar efeitos.
-            const heroBg = document.getElementById('hero-canvas-container');
-            if (heroBg) return;
-
             if (typeof particlesJS !== 'undefined') {
-                const isDev = import.meta.env.DEV;
+                // Config espelhada do template "digital_system_ai" (network + grab no cursor)
                 const narrow = window.matchMedia('(max-width: 767px)').matches;
-                const count = allowHeavyEffects
-                    ? isDev
-                        ? narrow
-                            ? 42
-                            : 96
-                        : narrow
-                          ? 64
-                          : 140
-                    : narrow
-                      ? 18
-                      : 34;
+                const count = narrow ? 46 : 60;
                 particlesJS('particles-js', {
                     particles: {
-                        number: {
-                            value: count,
-                            density: { enable: true, value_area: allowHeavyEffects ? (narrow ? 900 : 800) : 1200 },
-                        },
+                        number: { value: count, density: { enable: true, value_area: 800 } },
                         color: { value: '#e5c9a8' },
-                        shape: {
-                            type: ['circle', 'triangle', 'polygon'],
-                            stroke: { width: 0, color: '#000000' },
-                            polygon: { nb_sides: 5 },
-                        },
-                        opacity: {
-                            value: 0.42,
-                            random: true,
-                            anim: { enable: allowHeavyEffects, speed: 0.9, opacity_min: 0.12, sync: false },
-                        },
-                        size: {
-                            value: narrow ? 2.9 : 3.4,
-                            random: true,
-                            anim: { enable: allowHeavyEffects, speed: 1.6, size_min: 0.15, sync: false },
-                        },
-                        line_linked: {
-                            enable: true,
-                            distance: allowHeavyEffects ? (narrow ? 135 : 175) : 120,
-                            color: '#e5c9a8',
-                            opacity: allowHeavyEffects ? 0.32 : 0.2,
-                            width: 1,
-                        },
+                        shape: { type: 'circle' },
+                        opacity: { value: 0.5, random: false },
+                        size: { value: 3, random: true },
+                        line_linked: { enable: true, distance: 150, color: '#e5c9a8', opacity: 0.4, width: 1 },
                         move: {
                             enable: true,
-                            speed: allowHeavyEffects ? (narrow ? 0.75 : 0.95) : 0.6,
+                            speed: narrow ? 1.6 : 2,
                             direction: 'none',
-                            random: true,
+                            random: false,
+                            straight: false,
                             out_mode: 'out',
+                            bounce: false,
                         },
                     },
                     interactivity: {
                         detect_on: 'window',
                         events: {
-                            onhover: { enable: allowHeavyEffects, mode: 'grab' },
-                            onclick: { enable: allowHeavyEffects && !narrow, mode: 'push' },
+                            onhover: { enable: true, mode: 'grab' },
+                            onclick: { enable: true, mode: 'push' },
                             resize: true,
                         },
                         modes: {
                             grab: {
-                                distance: allowHeavyEffects ? (narrow ? 180 : 260) : 160,
-                                line_linked: { opacity: allowHeavyEffects ? 0.65 : 0.35 },
+                                distance: 200,
+                                line_linked: { opacity: 0.8 },
                             },
                             push: { particles_nb: 4 },
+                            bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 },
+                            repulse: { distance: 200, duration: 0.4 },
+                            remove: { particles_nb: 2 },
                         },
                     },
-                    retina_detect: allowHeavyEffects,
+                    retina_detect: true,
                 });
                 return;
             }
