@@ -86,8 +86,11 @@
     <main id="main-content" class="relative z-10 w-full min-h-screen">
 
         <!-- Hero Section -->
-        <section class="min-h-screen flex items-center justify-center py-15 px-8 max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center w-full">
+        <section class="min-h-screen flex items-center justify-center py-15 px-8 max-w-7xl mx-auto relative overflow-hidden">
+            <!-- Hero geometric background (Three.js) -->
+            <div id="hero-canvas-container" class="absolute inset-0 z-0 pointer-events-none opacity-70"></div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center w-full relative z-10">
 
                 <!-- Left Side: Bird Logo + Welcome Intro -->
                 <div class="flex flex-col items-center justify-center hero-logo-container relative">

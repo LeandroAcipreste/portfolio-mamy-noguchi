@@ -48,15 +48,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const initParticles = (attempt = 0) => {
         try {
+            // Quando o fundo geométrico WebGL (hero) está ativo, evita duplicar efeitos.
+            const heroBg = document.getElementById('hero-canvas-container');
+            if (heroBg) return;
+
             if (typeof particlesJS !== 'undefined') {
                 const isDev = import.meta.env.DEV;
                 const narrow = window.matchMedia('(max-width: 767px)').matches;
-                const count = allowHeavyEffects ? (isDev ? (narrow ? 28 : 52) : narrow ? 52 : 96) : narrow ? 16 : 28;
+                const count = allowHeavyEffects
+                    ? isDev
+                        ? narrow
+                            ? 42
+                            : 96
+                        : narrow
+                          ? 64
+                          : 140
+                    : narrow
+                      ? 18
+                      : 34;
                 particlesJS('particles-js', {
                     particles: {
                         number: {
                             value: count,
-                            density: { enable: true, value_area: allowHeavyEffects ? (isDev ? 1100 : 950) : 1300 },
+                            density: { enable: true, value_area: allowHeavyEffects ? (narrow ? 900 : 800) : 1200 },
                         },
                         color: { value: '#e5c9a8' },
                         shape: {
@@ -65,40 +79,46 @@ document.addEventListener('DOMContentLoaded', () => {
                             polygon: { nb_sides: 5 },
                         },
                         opacity: {
-                            value: 0.35,
+                            value: 0.42,
                             random: true,
-                            anim: { enable: allowHeavyEffects && !isDev, speed: 1, opacity_min: 0.1, sync: false },
+                            anim: { enable: allowHeavyEffects, speed: 0.9, opacity_min: 0.12, sync: false },
                         },
                         size: {
-                            value: 3.2,
+                            value: narrow ? 2.9 : 3.4,
                             random: true,
-                            anim: { enable: allowHeavyEffects && !isDev, speed: 2, size_min: 0.1, sync: false },
+                            anim: { enable: allowHeavyEffects, speed: 1.6, size_min: 0.15, sync: false },
                         },
                         line_linked: {
                             enable: true,
-                            distance: allowHeavyEffects ? (isDev ? 128 : 142) : 110,
+                            distance: allowHeavyEffects ? (narrow ? 135 : 175) : 120,
                             color: '#e5c9a8',
-                            opacity: 0.22,
+                            opacity: allowHeavyEffects ? 0.32 : 0.2,
                             width: 1,
                         },
-                        move: { enable: true, speed: allowHeavyEffects ? (isDev ? 0.95 : 1.15) : 0.75, direction: 'none', random: true, out_mode: 'out' },
+                        move: {
+                            enable: true,
+                            speed: allowHeavyEffects ? (narrow ? 0.75 : 0.95) : 0.6,
+                            direction: 'none',
+                            random: true,
+                            out_mode: 'out',
+                        },
                     },
                     interactivity: {
-                        detect_on: 'canvas',
+                        detect_on: 'window',
                         events: {
-                            onhover: { enable: allowHeavyEffects && !isDev, mode: 'grab' },
-                            onclick: { enable: allowHeavyEffects && !isDev, mode: 'push' },
+                            onhover: { enable: allowHeavyEffects, mode: 'grab' },
+                            onclick: { enable: allowHeavyEffects && !narrow, mode: 'push' },
                             resize: true,
                         },
                         modes: {
                             grab: {
-                                distance: 200,
-                                line_linked: { opacity: 0.45 },
+                                distance: allowHeavyEffects ? (narrow ? 180 : 260) : 160,
+                                line_linked: { opacity: allowHeavyEffects ? 0.65 : 0.35 },
                             },
-                            push: { particles_nb: 3 },
+                            push: { particles_nb: 4 },
                         },
                     },
-                    retina_detect: allowHeavyEffects && !isDev,
+                    retina_detect: allowHeavyEffects,
                 });
                 return;
             }
