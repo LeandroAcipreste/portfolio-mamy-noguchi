@@ -859,12 +859,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 };
 
+                // Apenas `click`: um toque = um toggle (touchend + pointerup + click juntos geravam vários toggles).
                 accordionCards.forEach((card) => {
-                    card.addEventListener('touchend', (e) => {
-                        e.preventDefault();
-                        toggleAccordionCard(card);
-                    }, { passive: false });
-                    card.addEventListener('pointerup', () => toggleAccordionCard(card), { passive: true });
                     card.addEventListener('click', () => toggleAccordionCard(card), { passive: true });
                 });
             }
