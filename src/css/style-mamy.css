@@ -660,20 +660,71 @@ body {
     border-color: rgba(225, 48, 108, 0.45);
 }
 
+
 @media (max-width: 639px) {
-    .footer-social-btn {
-        width: 100%;
-        max-width: 20rem;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
     .footer-content-layer {
-        padding-top: 3rem;
-        padding-bottom: 13.5rem;
+        /* Reserva mínima para a faixa final, sem abrir "buraco" */
+        padding-bottom: 4.5rem !important;
     }
 
-    #main-footer .footer-tagline {
-        margin-bottom: 1.75rem;
+    #main-footer > .relative {
+        min-height: 500px;
+    }
+
+    #main-footer > .relative > img {
+        min-height: 500px;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Botões lado a lado no mobile */
+    .footer-actions {
+        flex-direction: row !important;
+        align-items: stretch !important;
+        gap: 0.7rem !important;
+    }
+
+    .footer-social-btn {
+        width: auto !important;
+        max-width: none !important;
+        flex: 1 1 0 !important;
+        min-width: 0 !important;
+        padding: 0.85rem 0.9rem !important;
+    }
+
+    .footer-social-label {
+        font-size: 0.78rem !important;
+        letter-spacing: 0.1em !important;
+    }
+
+    /* Faixa de nomes fixa logo abaixo dos botões (evita cair fora da tela) */
+    #main-footer .mq {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 72%;
+        bottom: auto;
+        height: 2.2rem;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        z-index: 12;
+    }
+
+    #main-footer .mq-c {
+        min-width: max-content !important;
+        justify-content: flex-start !important;
+        gap: 1rem !important;
+        padding-right: 1rem;
+        animation-duration: 20s !important;
+    }
+
+    #main-footer .mq-c > span {
+        font-size: clamp(0.86rem, 3.5vw, 1.06rem) !important;
+        line-height: 1 !important;
+        margin-left: 0.3rem !important;
+        margin-right: 0.3rem !important;
+        color: rgba(229, 201, 168, 0.86) !important;
+        white-space: nowrap;
     }
 }
