@@ -16,10 +16,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const debugRunId = 'bird-motion-post-fix';
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isCoarsePointer = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    const isTouchDevice = isCoarsePointer || navigator.maxTouchPoints > 0 || 'ontouchstart' in window;
     const cpuCores = navigator.hardwareConcurrency || 4;
     const deviceMem = navigator.deviceMemory || 4;
     const isLowPerfDevice = isCoarsePointer || cpuCores <= 2 || deviceMem <= 2;
     const allowHeavyEffects = !prefersReducedMotion && !isLowPerfDevice;
+
+    const initUnicornStudio = () => {
+        const auroraTarget = document.getElementById('mamy-aurora-bg');
+        if (!auroraTarget) return;
+
+        if (!window.UnicornStudio) {
+            window.UnicornStudio = { isInitialized: false };
+        }
+
+        const boot = () => {
+            if (!window.UnicornStudio.isInitialized && typeof window.UnicornStudio.init === 'function') {
+                window.UnicornStudio.init();
+                window.UnicornStudio.isInitialized = true;
+            }
+        };
+
+        if (typeof window.UnicornStudio.init === 'function') {
+            boot();
+            return;
+        }
+
+        if (document.querySelector('script[data-unicorn-loader="true"]')) return;
+        const unicornScript = document.createElement('script');
+        unicornScript.src =
+            'https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.0.2/dist/unicornStudio.umd.js';
+        unicornScript.dataset.unicornLoader = 'true';
+        unicornScript.onload = boot;
+        (document.head || document.body).appendChild(unicornScript);
+    };
+    initUnicornStudio();
 
     let lenis;
     try {
@@ -127,10 +158,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             requestAnimationFrame(() => {
                 requestAnimationFrame(() => {
+                    const introStrokeDuration = isCoarsePointer ? 2.8 : 2.0;
+                    const introFillDuration = isCoarsePointer ? 1.1 : 0.8;
+                    const introDelayStep = isCoarsePointer ? 0.11 : 0.08;
+                    const introFillOffset = isCoarsePointer ? 2.2 : 1.6;
                     sigPaths.forEach((path, i) => {
                         const len = sigPathLengths[i];
-                        const delay = i * 0.08;
-                        path.style.transition = `stroke-dashoffset 2.0s ${delay}s cubic-bezier(0.4, 0.0, 0.2, 1), fill 0.8s ${1.6 + delay}s ease-in-out`;
+                        const delay = i * introDelayStep;
+                        path.style.transition = `stroke-dashoffset ${introStrokeDuration}s ${delay}s cubic-bezier(0.4, 0.0, 0.2, 1), fill ${introFillDuration}s ${introFillOffset + delay}s ease-in-out`;
                         path.style.strokeDashoffset = '0';
                         path.style.fill = '#b39344';
                     });
@@ -144,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     signatureLine,
                     {
                         width: '100%',
-                        duration: 2.0,
+                        duration: isCoarsePointer ? 2.8 : 2.0,
                         ease: 'power2.inOut',
                     },
                     0
@@ -153,9 +188,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     '#preloader',
                     {
                         yPercent: -100,
-                        duration: 1.0,
+                        duration: isCoarsePointer ? 1.4 : 1.0,
                         ease: 'expo.inOut',
-                        delay: 1.2,
+                        delay: isCoarsePointer ? 1.8 : 1.2,
                         onStart: () => {
                             initParticles();
                         },
@@ -812,25 +847,25 @@ document.addEventListener('DOMContentLoaded', () => {
             const accordionCards = document.querySelectorAll('.packing-accordion-card');
             const accordionWrapper = document.querySelector('#label-packing-section .flex.flex-col');
 
-            if (accordionCards.length > 0 && isCoarsePointer) {
+            if (accordionCards.length > 0 && isTouchDevice) {
+                const toggleAccordionCard = (card) => {
+                    const isActive = card.classList.contains('touch-active');
+                    accordionCards.forEach((c) => c.classList.remove('touch-active'));
+                    if (accordionWrapper) accordionWrapper.classList.remove('accordion-has-active');
+
+                    if (!isActive) {
+                        card.classList.add('touch-active');
+                        if (accordionWrapper) accordionWrapper.classList.add('accordion-has-active');
+                    }
+                };
+
                 accordionCards.forEach((card) => {
-                    card.addEventListener(
-                        'touchend',
-                        (e) => {
-                            e.preventDefault();
-
-                            const isActive = card.classList.contains('touch-active');
-
-                            accordionCards.forEach((c) => c.classList.remove('touch-active'));
-                            if (accordionWrapper) accordionWrapper.classList.remove('accordion-has-active');
-
-                            if (!isActive) {
-                                card.classList.add('touch-active');
-                                if (accordionWrapper) accordionWrapper.classList.add('accordion-has-active');
-                            }
-                        },
-                        { passive: false }
-                    );
+                    card.addEventListener('touchend', (e) => {
+                        e.preventDefault();
+                        toggleAccordionCard(card);
+                    }, { passive: false });
+                    card.addEventListener('pointerup', () => toggleAccordionCard(card), { passive: true });
+                    card.addEventListener('click', () => toggleAccordionCard(card), { passive: true });
                 });
             }
 
