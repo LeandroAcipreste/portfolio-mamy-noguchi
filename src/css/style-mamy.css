@@ -379,11 +379,26 @@ body {
     background-size: 40px 40px;
 }
 
+/* Rotação do fundo: não use `animate-spin` do Tailwind (1s) — ele sobrescreve a duração. */
+@keyframes abstract-spin-rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .abstract-spin-filtered {
     transform-origin: center;
     filter: sepia(100%) saturate(150%) hue-rotate(330deg) brightness(120%) contrast(120%);
-    animation-duration: 60s;
-    animation-timing-function: linear;
+    animation: abstract-spin-rotate 60s linear infinite;
+}
+
+@media (max-width: 767px) {
+    .abstract-spin-filtered {
+        animation-duration: 140s;
+    }
 }
 
 .aurora-transform-gpu {
