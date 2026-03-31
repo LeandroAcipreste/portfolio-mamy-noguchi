@@ -164,6 +164,10 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .hero-bird-float-layer {
+        transform: none !important;
+    }
+
     .mamy-back-top-btn {
         transition: opacity 0.2s ease;
     }
@@ -266,6 +270,10 @@ body {
     stroke-linecap: round;
     stroke-linejoin: round;
     filter: drop-shadow(0 0 10px rgba(179, 147, 68, 0.3));
+}
+
+.hero-bird-float-layer {
+    will-change: transform;
 }
 
 /* Hero Elements Initial State (for GSAP) */
@@ -697,13 +705,13 @@ body {
         letter-spacing: 0.1em !important;
     }
 
-    /* Faixa de nomes fixa logo abaixo dos botões (evita cair fora da tela) */
+    /* Faixa de nomes ancorada no rodapé do footer no mobile */
     #main-footer .mq {
         position: absolute;
         left: 0;
         right: 0;
-        top: 70%;
-        bottom: auto;
+        top: auto;
+        bottom: 0;
         height: 2.2rem;
         display: flex;
         align-items: center;

@@ -13,6 +13,7 @@ const log = (...args) => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    const debugRunId = 'bird-motion-post-fix';
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isCoarsePointer = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
     const cpuCores = navigator.hardwareConcurrency || 4;
@@ -51,11 +52,9 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             if (typeof particlesJS !== 'undefined') {
                 // Config espelhada do template "digital_system_ai" (network + grab no cursor)
-                const narrow = window.matchMedia('(max-width: 767px)').matches;
-                const count = narrow ? 46 : 60;
                 particlesJS('particles-js', {
                     particles: {
-                        number: { value: count, density: { enable: true, value_area: 800 } },
+                        number: { value: 60, density: { enable: true, value_area: 800 } },
                         color: { value: '#e5c9a8' },
                         shape: { type: 'circle' },
                         opacity: { value: 0.5, random: false },
@@ -63,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         line_linked: { enable: true, distance: 150, color: '#e5c9a8', opacity: 0.4, width: 1 },
                         move: {
                             enable: true,
-                            speed: narrow ? 1.6 : 2,
+                            speed: 2,
                             direction: 'none',
                             random: false,
                             straight: false,
@@ -215,12 +214,37 @@ document.addEventListener('DOMContentLoaded', () => {
             masterTl.add(heroTl, '-=0.6');
 
             const prefersFinePointer = window.matchMedia('(pointer: fine)');
+            const birdFloatLayer = document.querySelector('.hero-bird-float-layer');
+            const birdImage = document.querySelector('.hero-bird-image');
+            const allowBirdMotion = prefersFinePointer.matches && !!birdFloatLayer;
+            let birdDebugEventCount = 0;
+            let birdDebugAppliedCount = 0;
+            let birdDebugBlockedLogged = false;
+
+            // #region agent log
+            fetch('http://127.0.0.1:7285/ingest/4ff671a5-dc58-4d00-9dd9-95e3aaf110f6',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'ffad29'},body:JSON.stringify({sessionId:'ffad29',runId:debugRunId,hypothesisId:'H1',location:'src/js/script-mamy.js:init-bird-motion',message:'Bird motion gating values',data:{prefersReducedMotion,isCoarsePointer,allowHeavyEffects,prefersFinePointer:prefersFinePointer.matches,hasBirdFloatLayer:!!birdFloatLayer,hasBirdImage:!!birdImage,allowBirdMotion},timestamp:Date.now()})}).catch(()=>{});
+            // #endregion
 
             let birdParallaxX;
             let birdParallaxY;
-            if (allowHeavyEffects) {
-                birdParallaxX = gsap.quickTo('.hero-bird-image', 'x', { duration: 1, ease: 'power2.out' });
-                birdParallaxY = gsap.quickTo('.hero-bird-image', 'y', { duration: 1, ease: 'power2.out' });
+            if (allowBirdMotion) {
+                birdParallaxX = gsap.quickTo(birdFloatLayer, 'x', { duration: 0.9, ease: 'power2.out' });
+                birdParallaxY = gsap.quickTo(birdFloatLayer, 'y', { duration: 0.9, ease: 'power2.out' });
+
+                // #region agent log
+                fetch('http://127.0.0.1:7285/ingest/4ff671a5-dc58-4d00-9dd9-95e3aaf110f6',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'ffad29'},body:JSON.stringify({sessionId:'ffad29',runId:debugRunId,hypothesisId:'H2',location:'src/js/script-mamy.js:init-parallax',message:'Parallax quickTo created',data:{hasQuickToX:!!birdParallaxX,hasQuickToY:!!birdParallaxY},timestamp:Date.now()})}).catch(()=>{});
+                // #endregion
+            }
+
+            if (birdImage) {
+                gsap.to(birdImage, {
+                    y: '+=10',
+                    rotation: 1.2,
+                    duration: 2.8,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: 'sine.inOut',
+                });
             }
 
             const cursor = document.getElementById('mamy-custom-cursor');
@@ -233,11 +257,29 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const onGlobalPointerMove = (e) => {
-                if (allowHeavyEffects && prefersFinePointer.matches && birdParallaxX && birdParallaxY) {
+                if (birdDebugEventCount < 3) {
+                    birdDebugEventCount += 1;
+                    // #region agent log
+                    fetch('http://127.0.0.1:7285/ingest/4ff671a5-dc58-4d00-9dd9-95e3aaf110f6',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'ffad29'},body:JSON.stringify({sessionId:'ffad29',runId:debugRunId,hypothesisId:'H3',location:'src/js/script-mamy.js:onGlobalPointerMove',message:'Pointer event received',data:{count:birdDebugEventCount,clientX:e.clientX,clientY:e.clientY,allowBirdMotion,hasParallaxX:!!birdParallaxX,hasParallaxY:!!birdParallaxY},timestamp:Date.now()})}).catch(()=>{});
+                    // #endregion
+                }
+
+                if (allowBirdMotion && birdParallaxX && birdParallaxY) {
                     const x = (e.clientX - window.innerWidth / 2) * 0.01;
                     const y = (e.clientY - window.innerHeight / 2) * 0.01;
-                    birdParallaxX(x * 2);
-                    birdParallaxY(y * 2);
+                    birdParallaxX(x * 2.4);
+                    birdParallaxY(y * 2.1);
+                    if (birdDebugAppliedCount < 3) {
+                        birdDebugAppliedCount += 1;
+                        // #region agent log
+                        fetch('http://127.0.0.1:7285/ingest/4ff671a5-dc58-4d00-9dd9-95e3aaf110f6',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'ffad29'},body:JSON.stringify({sessionId:'ffad29',runId:debugRunId,hypothesisId:'H4',location:'src/js/script-mamy.js:apply-parallax',message:'Parallax applied to bird',data:{count:birdDebugAppliedCount,x,y,targetX:x*2.4,targetY:y*2.1},timestamp:Date.now()})}).catch(()=>{});
+                        // #endregion
+                    }
+                } else if (!birdDebugBlockedLogged) {
+                    birdDebugBlockedLogged = true;
+                    // #region agent log
+                    fetch('http://127.0.0.1:7285/ingest/4ff671a5-dc58-4d00-9dd9-95e3aaf110f6',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'ffad29'},body:JSON.stringify({sessionId:'ffad29',runId:debugRunId,hypothesisId:'H5',location:'src/js/script-mamy.js:blocked-parallax',message:'Parallax branch blocked',data:{allowBirdMotion,hasParallaxX:!!birdParallaxX,hasParallaxY:!!birdParallaxY,prefersFinePointer:prefersFinePointer.matches,prefersReducedMotion},timestamp:Date.now()})}).catch(()=>{});
+                    // #endregion
                 }
 
                 if (magazineCanvasEl) {
