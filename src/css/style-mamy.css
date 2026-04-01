@@ -350,6 +350,44 @@ body {
     -webkit-mask-image: linear-gradient(180deg, transparent, black 12%, black 88%, transparent);
 }
 
+/* Social Media: imagens sem recorte + máscara mais suave + altura da grelha (evita cards cortados) */
+#social-media-section .social-wall-card-img {
+    object-fit: contain;
+    object-position: center;
+}
+
+#social-media-section .social-wall-stage.mask-fade-v2 {
+    mask-image: linear-gradient(180deg, transparent, black 4%, black 96%, transparent);
+    -webkit-mask-image: linear-gradient(180deg, transparent, black 4%, black 96%, transparent);
+}
+
+#social-media-section .social-wall-grid.logoEbranding-wall-3d {
+    height: 860px;
+    min-height: 640px;
+}
+
+@media (max-width: 1023px) {
+    #social-media-section .social-wall-grid.logoEbranding-wall-3d {
+        height: 800px;
+        min-height: 600px;
+    }
+}
+
+/* Logo & Branding — 3 cards em destaque: mobile empilhado sem recorte; tablet+ 3 colunas (ver grid no HTML) */
+@media (max-width: 767px) {
+    #logo-branding-scrolling .branding-features-grid .branding-feature-card {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #logo-branding-scrolling .branding-features-grid .branding-feature-img {
+        flex: 1 1 auto;
+        min-height: 0;
+        object-fit: contain;
+        object-position: center;
+    }
+}
+
 .logoEbranding-wall-3d {
     transform-style: preserve-3d;
     transform: rotateX(8deg) rotateY(-4deg) scale(0.98);
@@ -511,6 +549,17 @@ body {
     .logoEbranding-wall-3d {
         height: 600px;
     }
+
+    #social-media-section .social-wall-grid.logoEbranding-wall-3d {
+        height: min(92vh, 920px);
+        min-height: 640px;
+    }
+
+    #social-media-section .social-wall-stage.mask-fade-v2 {
+        mask-image: none;
+        -webkit-mask-image: none;
+    }
+
     /* Mobile optimization for Logo Section */
     .logoEbranding-wall-track {
         gap: 8px; /* Tightened from 12px */
@@ -599,16 +648,12 @@ body {
     #label-packing-section .packing-accordion-card.touch-active {
         flex: 4;
         min-height: 420px;
-        opacity: 1;
-        filter: blur(0px);
         border-color: rgba(46, 65, 41, 0.3);
         transform: translateY(-4px);
     }
 
     #label-packing-section .accordion-has-active .packing-accordion-card:not(.touch-active) {
         min-height: 220px;
-        opacity: 0.5;
-        filter: blur(2px);
     }
 
     #label-packing-section .packing-accordion-card.touch-active img {
@@ -616,8 +661,7 @@ body {
     }
 
     #label-packing-section .packing-accordion-card {
-        transition: min-height 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s ease,
-            opacity 0.45s ease, filter 0.45s ease;
+        transition: min-height 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s ease;
     }
 }
 
