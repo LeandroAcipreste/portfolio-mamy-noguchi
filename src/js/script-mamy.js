@@ -69,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         lenis.stop();
+        lenis.scrollTo(0, { immediate: true, force: true });
 
         gsap.ticker.add((time) => {
             lenis.raf(time * 1000);
@@ -207,7 +208,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const heroTl = gsap.timeline({
                 defaults: { ease: 'expo.out', duration: 1.6, force3D: true },
                 onComplete: () => {
-                    if (lenis) lenis.start();
+                    window.scrollTo(0, 0);
+                    document.documentElement.scrollTop = 0;
+                    document.body.scrollTop = 0;
+                    if (lenis) {
+                        lenis.start();
+                        lenis.scrollTo(0, { immediate: true, force: true });
+                    }
                     document.documentElement.classList.remove('overflow-hidden');
                     document.body.classList.remove('overflow-hidden');
                     document.body.classList.add('overflow-x-hidden');
