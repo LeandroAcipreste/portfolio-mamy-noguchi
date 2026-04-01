@@ -366,8 +366,8 @@ body {
     min-height: 640px;
 }
 
-@media (max-width: 1023px) {
-    /* 2×2 no mobile/tablet: quatro colunas de marquee com altura de linha partilhada */
+/* Tablet: 2×2 com altura partilhada (todas as colunas visíveis) */
+@media (min-width: 768px) and (max-width: 1023px) {
     #social-media-section .social-wall-grid.logoEbranding-wall-3d {
         height: 800px;
         min-height: 600px;
@@ -557,14 +557,29 @@ body {
         height: 600px;
     }
 
+    /* Secção pode crescer com a pilha de marquees (uma coluna) */
+    #social-media-section {
+        overflow: visible;
+    }
+
+    /* Uma coluna: quatro marquees empilhados, altura automática (todas as imagens) */
     #social-media-section .social-wall-grid.logoEbranding-wall-3d {
-        height: min(92vh, 920px);
-        min-height: 640px;
+        height: auto;
+        min-height: 0;
+        grid-template-rows: none;
+        overflow: visible;
+    }
+
+    #social-media-section .social-wall-grid .logoEbranding-wall-column {
+        height: min(42vh, 320px);
+        min-height: 240px;
+        max-height: 340px;
     }
 
     #social-media-section .social-wall-stage.mask-fade-v2 {
         mask-image: none;
         -webkit-mask-image: none;
+        overflow: visible;
     }
 
     /* Mobile optimization for Logo Section */
