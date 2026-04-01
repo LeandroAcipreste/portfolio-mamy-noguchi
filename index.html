@@ -7,7 +7,30 @@
     <meta name="description" content="Portfólio criativo premium — logo, branding, editorial, social media e identidade visual por Mamy Noguchi.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script src="/src/js/head-init.js"></script>
+    <!-- Inline: Vite NÃO empacota script sem type=module — /src/js/head-init.js era 404 em produção (Vercel). -->
+    <script>
+        (function () {
+            function hardScrollTop() {
+                window.scrollTo(0, 0);
+                if (document.documentElement) document.documentElement.scrollTop = 0;
+                if (document.body) document.body.scrollTop = 0;
+            }
+            if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+            hardScrollTop();
+            window.addEventListener('load', hardScrollTop, { passive: true });
+            window.addEventListener(
+                'pageshow',
+                function (ev) {
+                    if (ev.persisted) {
+                        window.location.reload();
+                        return;
+                    }
+                    hardScrollTop();
+                },
+                { passive: true }
+            );
+        })();
+    </script>
     <title>Mamy — Premium Creative Portfolio</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">

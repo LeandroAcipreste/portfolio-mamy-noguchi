@@ -13,6 +13,17 @@ const log = (...args) => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    const forceViewportTop = () => {
+        window.scrollTo(0, 0);
+        if (document.documentElement) document.documentElement.scrollTop = 0;
+        if (document.body) document.body.scrollTop = 0;
+    };
+    forceViewportTop();
+    requestAnimationFrame(() => {
+        forceViewportTop();
+        requestAnimationFrame(forceViewportTop);
+    });
+
     const debugRunId = 'bird-motion-post-fix';
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isCoarsePointer = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
