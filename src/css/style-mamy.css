@@ -367,9 +367,16 @@ body {
 }
 
 @media (max-width: 1023px) {
+    /* 2×2 no mobile/tablet: quatro colunas de marquee com altura de linha partilhada */
     #social-media-section .social-wall-grid.logoEbranding-wall-3d {
         height: 800px;
         min-height: 600px;
+        grid-template-rows: repeat(2, minmax(0, 1fr));
+        align-items: stretch;
+    }
+
+    #social-media-section .social-wall-grid .logoEbranding-wall-column {
+        min-height: 0;
     }
 }
 
