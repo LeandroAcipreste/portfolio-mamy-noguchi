@@ -538,7 +538,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const MARQUEE_BASE_DURATION = 28;
             document
-                .querySelectorAll('#logo-branding-scrolling .js-marquee-up, #social-media-section .js-marquee-up')
+                .querySelectorAll(
+                    '#logo-branding-scrolling .js-marquee-up, #social-media-section .social-wall-desktop .js-marquee-up, #social-media-section .social-wall-mobile .js-marquee-up'
+                )
                 .forEach((track, index) => {
                     const tween = gsap.to(track, {
                         yPercent: -50,
@@ -554,7 +556,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
             document
-                .querySelectorAll('#logo-branding-scrolling .js-marquee-down, #social-media-section .js-marquee-down')
+                .querySelectorAll(
+                    '#logo-branding-scrolling .js-marquee-down, #social-media-section .social-wall-desktop .js-marquee-down'
+                )
                 .forEach((track, index) => {
                     gsap.set(track, { yPercent: -50 });
                     const tween = gsap.to(track, {

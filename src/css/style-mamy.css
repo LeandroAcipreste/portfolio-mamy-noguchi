@@ -361,21 +361,21 @@ body {
     -webkit-mask-image: linear-gradient(180deg, transparent, black 4%, black 96%, transparent);
 }
 
-#social-media-section .social-wall-grid.logoEbranding-wall-3d {
+#social-media-section .social-wall-desktop.social-wall-grid.logoEbranding-wall-3d {
     height: 860px;
     min-height: 640px;
 }
 
-/* Tablet: 2×2 com altura partilhada (todas as colunas visíveis) */
+/* Tablet: 2×2 com altura partilhada */
 @media (min-width: 768px) and (max-width: 1023px) {
-    #social-media-section .social-wall-grid.logoEbranding-wall-3d {
+    #social-media-section .social-wall-desktop.social-wall-grid.logoEbranding-wall-3d {
         height: 800px;
         min-height: 600px;
         grid-template-rows: repeat(2, minmax(0, 1fr));
         align-items: stretch;
     }
 
-    #social-media-section .social-wall-grid .logoEbranding-wall-column {
+    #social-media-section .social-wall-desktop .logoEbranding-wall-column {
         min-height: 0;
     }
 }
@@ -557,29 +557,20 @@ body {
         height: 600px;
     }
 
-    /* Secção pode crescer com a pilha de marquees (uma coluna) */
-    #social-media-section {
-        overflow: visible;
+    /* Mobile: uma única coluna com todas as imagens — altura fixa do palco (um marquee) */
+    #social-media-section .social-wall-mobile.social-wall-grid.logoEbranding-wall-3d {
+        height: min(72vh, 640px);
+        min-height: 440px;
     }
 
-    /* Uma coluna: quatro marquees empilhados, altura automática (todas as imagens) */
-    #social-media-section .social-wall-grid.logoEbranding-wall-3d {
-        height: auto;
+    #social-media-section .social-wall-mobile .logoEbranding-wall-column {
         min-height: 0;
-        grid-template-rows: none;
-        overflow: visible;
-    }
-
-    #social-media-section .social-wall-grid .logoEbranding-wall-column {
-        height: min(42vh, 320px);
-        min-height: 240px;
-        max-height: 340px;
+        height: 100%;
     }
 
     #social-media-section .social-wall-stage.mask-fade-v2 {
         mask-image: none;
         -webkit-mask-image: none;
-        overflow: visible;
     }
 
     /* Mobile optimization for Logo Section */

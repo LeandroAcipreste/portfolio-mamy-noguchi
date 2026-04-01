@@ -910,7 +910,83 @@
 
                 <!-- Wall Stage (altura e máscara controladas em CSS — social-wall) -->
                 <div class="logoEbranding-wall-stage mask-fade-v2 social-wall-stage">
-                    <div class="logoEbranding-wall-3d social-wall-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 overflow-hidden md:overflow-hidden items-stretch max-md:overflow-visible">
+                    <!-- Mobile: uma única coluna — todas as imagens num só marquee (não 4 faixas empilhadas) -->
+                    <div class="social-wall-mobile logoEbranding-wall-3d social-wall-grid md:hidden grid grid-cols-1 gap-4 overflow-hidden items-stretch h-full min-h-0">
+                        <div class="logoEbranding-wall-column relative h-full min-h-0 overflow-hidden hover:z-20">
+                            <div class="logoEbranding-wall-track js-marquee-up">
+                                <article class="bg-card-texture rounded-[2rem] border border-[#b39344]/20 p-4 flex items-center justify-center h-[280px]">
+                                    <img src="/img/portfolio/social-media/ballet.png" class="w-full h-full rounded-2xl social-wall-card-img" alt="Social Media">
+                                </article>
+                                <article class="bg-card-texture rounded-[2rem] border border-[#b39344]/20 p-4 flex items-center justify-center h-[340px]">
+                                    <img src="/img/portfolio/social-media/cheiro-de-mato-maes.png" class="w-full h-full rounded-2xl social-wall-card-img" alt="Social Media">
+                                </article>
+                                <article class="bg-card-texture rounded-[2rem] border border-[#b39344]/20 p-4 flex items-center justify-center h-[300px]">
+                                    <img src="/img/portfolio/social-media/cheiro-de-mato-saoJoao.png" class="w-full h-full rounded-2xl social-wall-card-img" alt="Social Media">
+                                </article>
+                                <article class="bg-card-texture rounded-[2rem] border border-[#b39344]/20 p-4 flex items-center justify-center h-[320px]">
+                                    <img src="/img/portfolio/social-media/cheiro-de-mato.png" class="w-full h-full rounded-2xl social-wall-card-img" alt="Social Media">
+                                </article>
+                                <article class="bg-card-texture rounded-[2rem] border border-[#b39344]/20 p-4 flex items-center justify-center h-[260px]">
+                                    <img src="/img/portfolio/social-media/kia.png" class="w-full h-full rounded-2xl social-wall-card-img" alt="Social Media">
+                                </article>
+                                <article class="bg-card-texture rounded-[2rem] border border-[#b39344]/20 p-4 flex items-center justify-center h-[340px]">
+                                    <img src="/img/portfolio/social-media/lila-dj.png" class="w-full h-full rounded-2xl social-wall-card-img" alt="Social Media">
+                                </article>
+                                <article class="bg-card-texture rounded-[2rem] border border-[#b39344]/20 p-4 flex items-center justify-center h-[300px]">
+                                    <img src="/img/portfolio/social-media/lila-show-namorados.png" class="w-full h-full rounded-2xl social-wall-card-img" alt="Social Media">
+                                </article>
+                                <article class="bg-card-texture rounded-[2rem] border border-[#b39344]/20 p-4 flex items-center justify-center h-[280px]">
+                                    <img src="/img/portfolio/social-media/novo-prato.png" class="w-full h-full rounded-2xl social-wall-card-img" alt="Social Media">
+                                </article>
+                                <article class="bg-card-texture rounded-[2rem] border border-[#b39344]/20 p-4 flex items-center justify-center h-[340px]">
+                                    <img src="/img/portfolio/social-media/pasargada%20(2).png" class="w-full h-full rounded-2xl social-wall-card-img" alt="Social Media">
+                                </article>
+                                <article class="bg-card-texture rounded-[2rem] border border-[#b39344]/20 p-4 flex items-center justify-center h-[280px]">
+                                    <img src="/img/portfolio/social-media/pereira.png" class="w-full h-full rounded-2xl social-wall-card-img" alt="Social Media">
+                                </article>
+                                <article class="bg-card-texture rounded-[2rem] border border-[#b39344]/20 p-4 flex items-center justify-center h-[320px]">
+                                    <img src="/img/portfolio/social-media/planeta-bolsas.png" class="w-full h-full rounded-2xl social-wall-card-img" alt="Social Media">
+                                </article>
+                                <!-- loop: repete o mesmo conjunto (11 ficheiros únicos) para o marquee infinito -->
+                                <article class="bg-card-texture rounded-[2rem] border border-[#b39344]/20 p-4 flex items-center justify-center h-[280px]">
+                                    <img src="/img/portfolio/social-media/ballet.png" class="w-full h-full rounded-2xl social-wall-card-img" alt="Social Media">
+                                </article>
+                                <article class="bg-card-texture rounded-[2rem] border border-[#b39344]/20 p-4 flex items-center justify-center h-[340px]">
+                                    <img src="/img/portfolio/social-media/cheiro-de-mato-maes.png" class="w-full h-full rounded-2xl social-wall-card-img" alt="Social Media">
+                                </article>
+                                <article class="bg-card-texture rounded-[2rem] border border-[#b39344]/20 p-4 flex items-center justify-center h-[300px]">
+                                    <img src="/img/portfolio/social-media/cheiro-de-mato-saoJoao.png" class="w-full h-full rounded-2xl social-wall-card-img" alt="Social Media">
+                                </article>
+                                <article class="bg-card-texture rounded-[2rem] border border-[#b39344]/20 p-4 flex items-center justify-center h-[320px]">
+                                    <img src="/img/portfolio/social-media/cheiro-de-mato.png" class="w-full h-full rounded-2xl social-wall-card-img" alt="Social Media">
+                                </article>
+                                <article class="bg-card-texture rounded-[2rem] border border-[#b39344]/20 p-4 flex items-center justify-center h-[260px]">
+                                    <img src="/img/portfolio/social-media/kia.png" class="w-full h-full rounded-2xl social-wall-card-img" alt="Social Media">
+                                </article>
+                                <article class="bg-card-texture rounded-[2rem] border border-[#b39344]/20 p-4 flex items-center justify-center h-[340px]">
+                                    <img src="/img/portfolio/social-media/lila-dj.png" class="w-full h-full rounded-2xl social-wall-card-img" alt="Social Media">
+                                </article>
+                                <article class="bg-card-texture rounded-[2rem] border border-[#b39344]/20 p-4 flex items-center justify-center h-[300px]">
+                                    <img src="/img/portfolio/social-media/lila-show-namorados.png" class="w-full h-full rounded-2xl social-wall-card-img" alt="Social Media">
+                                </article>
+                                <article class="bg-card-texture rounded-[2rem] border border-[#b39344]/20 p-4 flex items-center justify-center h-[280px]">
+                                    <img src="/img/portfolio/social-media/novo-prato.png" class="w-full h-full rounded-2xl social-wall-card-img" alt="Social Media">
+                                </article>
+                                <article class="bg-card-texture rounded-[2rem] border border-[#b39344]/20 p-4 flex items-center justify-center h-[340px]">
+                                    <img src="/img/portfolio/social-media/pasargada%20(2).png" class="w-full h-full rounded-2xl social-wall-card-img" alt="Social Media">
+                                </article>
+                                <article class="bg-card-texture rounded-[2rem] border border-[#b39344]/20 p-4 flex items-center justify-center h-[280px]">
+                                    <img src="/img/portfolio/social-media/pereira.png" class="w-full h-full rounded-2xl social-wall-card-img" alt="Social Media">
+                                </article>
+                                <article class="bg-card-texture rounded-[2rem] border border-[#b39344]/20 p-4 flex items-center justify-center h-[320px]">
+                                    <img src="/img/portfolio/social-media/planeta-bolsas.png" class="w-full h-full rounded-2xl social-wall-card-img" alt="Social Media">
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tablet + desktop: 4 colunas de marquee -->
+                    <div class="social-wall-desktop hidden md:grid logoEbranding-wall-3d social-wall-grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 overflow-hidden items-stretch">
                         
                         <!-- Column 1 (Marquee Up) -->
                         <div class="logoEbranding-wall-column relative h-full min-h-0 overflow-hidden hover:z-20">
