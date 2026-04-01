@@ -537,6 +537,19 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const MARQUEE_BASE_DURATION = 28;
+
+            /** Pausa no hover (desktop) e no toque; retoma ao soltar — no mobile o mouseleave nem sempre corre após touch. */
+            const bindMarqueeColumnInteractions = (col, tween) => {
+                if (!col) return;
+                const pause = () => tween.pause();
+                const play = () => tween.play();
+                col.addEventListener('mouseenter', pause);
+                col.addEventListener('mouseleave', play);
+                col.addEventListener('touchstart', pause, { passive: true });
+                col.addEventListener('touchend', play, { passive: true });
+                col.addEventListener('touchcancel', play, { passive: true });
+            };
+
             document
                 .querySelectorAll(
                     '#logo-branding-scrolling .js-marquee-up, #social-media-section .social-wall-desktop .js-marquee-up, #social-media-section .social-wall-mobile .js-marquee-up'
@@ -548,11 +561,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         repeat: -1,
                         duration: MARQUEE_BASE_DURATION + index * 0.4,
                     });
-                    const col = track.closest('.logoEbranding-wall-column');
-                    if (col) {
-                        col.addEventListener('mouseenter', () => tween.pause());
-                        col.addEventListener('mouseleave', () => tween.play());
-                    }
+                    bindMarqueeColumnInteractions(track.closest('.logoEbranding-wall-column'), tween);
                 });
 
             document
@@ -567,11 +576,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         repeat: -1,
                         duration: MARQUEE_BASE_DURATION + index * 0.4,
                     });
-                    const col = track.closest('.logoEbranding-wall-column');
-                    if (col) {
-                        col.addEventListener('mouseenter', () => tween.pause());
-                        col.addEventListener('mouseleave', () => tween.play());
-                    }
+                    bindMarqueeColumnInteractions(track.closest('.logoEbranding-wall-column'), tween);
                 });
 
             if (document.querySelector('#books-section')) {
